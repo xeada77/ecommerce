@@ -1,10 +1,14 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
+import Navbar from "../components/Navbar";
+import Pay from "../components/Pay";
 
 const Home = () => {
-    return (
-        <Navbar/>
-    )
-}
+  return (
+    <div>
+      <Navbar />
+      <Pay />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
