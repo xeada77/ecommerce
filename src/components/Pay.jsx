@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
 const KEY =
   "pk_test_51JbivvKtCNdHT56GtYdOeAhJpoBV7fWVL4xeAZEZeziuOvjx7DOZSB2T6UfJO3RhZWpWG3kIB1cT4FR9eCmLQgil00Zii5xmds";
 
+axios.defaults.headers.common = {
+  "Content-Type": "application/json",
+};
+
 const Pay = () => {
   const [stripeToken, setStripeToken] = useState(null);
+  const history = useHistory();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -19,16 +25,17 @@ const Pay = () => {
           "http://localhost:5001/api/v1/checkout/payment",
           {
             tokenId: stripeToken.id,
-            amount: 10000,
+            amount: 7500,
+            currency: "EUR",
           }
         );
-        console.log(res.data);
+        history.push("/success");
       } catch (error) {
         console.log(error);
       }
     };
     stripeToken && makeRequest();
-  }, [stripeToken]);
+  }, [stripeToken, history]);
   return (
     <div
       style={{
@@ -38,30 +45,35 @@ const Pay = () => {
         justifyContent: "center",
       }}
     >
-      <StripeCheckout
-        name="XDA Shop"
-        billingAddress
-        shippingAddress
-        description="El total es 100 Euros"
-        amount={10000}
-        token={onToken}
-        stripeKey={KEY}
-      >
-        <button
-          style={{
-            border: "none",
-            width: 120,
-            borderRadius: 5,
-            padding: "20px",
-            backgroundColor: "black",
-            color: "white",
-            fontWeight: "600",
-            cursor: "pointer",
-          }}
+      {stripeToken ? (
+        <span>Procesando ....</span>
+      ) : (
+        <StripeCheckout
+          name="XDA Shop"
+          billingAddress
+          shippingAddress
+          description="El total es 100 Euros"
+          currency="EUR"
+          amount={10000}
+          token={onToken}
+          stripeKey={KEY}
         >
-          Pagar
-        </button>
-      </StripeCheckout>
+          <button
+            style={{
+              border: "none",
+              width: 120,
+              borderRadius: 5,
+              padding: "20px",
+              backgroundColor: "black",
+              color: "white",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            Pagar
+          </button>
+        </StripeCheckout>
+      )}
     </div>
   );
 };
