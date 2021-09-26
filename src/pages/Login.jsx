@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -57,14 +58,32 @@ const Link = styled.a`
   cursor: pointer;
 `;
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+  };
   return (
     <Container>
       <Wrapper>
         <Title>INICIA SESIÓN</Title>
-        <Form>
-          <Input placeholder="Nombre de Usuario" />
+        <Form onSubmit={handleSubmit}>
+          <Input
+            placeholder="Nombre de Usuario"
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+          />
 
-          <Input placeholder="Contraseña" />
+          <Input
+            placeholder="Contraseña"
+            name="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
 
           <Button>Entrar</Button>
           <Link>¿NO RECUERDAS LA CONTRASEÑA?</Link>
