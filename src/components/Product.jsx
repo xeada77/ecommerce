@@ -18,8 +18,28 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   transition: all 0.5s ease;
   cursor: pointer;
+`;
+
+const ShopInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  flex: 4;
+`;
+
+const SizeInfo = styled.div`
+  width: 100%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  flex: 1;
 `;
 
 const Container = styled.div`
@@ -68,21 +88,41 @@ const Icon = styled.div`
   }
 `;
 
+const Size = styled.div`
+  width: 30px;
+  height: 30px;
+  background-color: #f5fbfd;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+`;
+
 const Product = ({ product }) => {
   return (
     <Container>
       <Circle />
       <Image src={product.img} />
       <Info>
-        <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
-          <SearchOutlined />
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
-        </Icon>
+        <ShopInfo>
+          <Icon>
+            <ShoppingCartOutlined />
+          </Icon>
+          <Icon>
+            <SearchOutlined />
+          </Icon>
+          <Icon>
+            <FavoriteBorderOutlined />
+          </Icon>
+        </ShopInfo>
+        <SizeInfo>
+          {product.sizes.map((size) => (
+            <Size>{size}</Size>
+          ))}
+        </SizeInfo>
       </Info>
     </Container>
   );

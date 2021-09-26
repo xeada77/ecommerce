@@ -25,12 +25,18 @@ const Description = styled.div`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
+
+  }
 `;
 const Input = styled.input`
   border: none;
   flex: 8;
   padding-left: 20px;
   font-size: 20px;
+
+  ::placeholder {
+    color: teal;
+  }
 `;
 const Button = styled.button`
   flex: 1;
