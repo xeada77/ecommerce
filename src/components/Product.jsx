@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-const Info = styled(Link)`
+const Info = styled.div`
   opacity: 0;
   width: 100%;
   height: 100%;
@@ -124,7 +124,7 @@ const Product = ({ product }) => {
         </ShopInfo>
         <SizeInfo>
           {product.sizes.map((size) => (
-            <Size>{size}</Size>
+            <Size key={size}>{size}</Size>
           ))}
         </SizeInfo>
       </Info>

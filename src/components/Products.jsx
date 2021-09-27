@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <Container>
       {popularProducts.map((product) => (
-        <Product product={product} id={product.id} />
+        <Product product={product} key={product.id} />
       ))}
     </Container>
   );

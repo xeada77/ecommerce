@@ -117,15 +117,31 @@ const Button = styled.button`
   border: 2px solid teal;
   cursor: pointer;
   background-color: white;
+  border-style: solid;
 
   &:hover {
     background-color: #f8f4f4;
+  }
+
+  &:disabled {
+    border: none;
+    color: gray;
+    cursor: default;
   }
 `;
 
 const Product = () => {
   const [amount, setAmount] = useState(1);
   const [store, dispatch] = useContext(StoreContext);
+
+  const [size, setSize] = useState("");
+  const [sizeSelected, setSizeSelected] = useState(false);
+
+  const handleSizeSelect = (e) => {
+    setSizeSelected(true);
+    //console.log(e.target.value);
+    setSize(e.target.value);
+  };
 
   return (
     <Container>
@@ -154,15 +170,19 @@ const Product = () => {
             </Filter>
             <Filter>
               <FilterTitle>Talla: </FilterTitle>
-              <FilterSize>
-                <FilterSizeOption defaultValue disabled>
+              <FilterSize
+                name="size"
+                defaultValue="0"
+                onChange={handleSizeSelect}
+              >
+                <FilterSizeOption disabled value="0">
                   Talla
                 </FilterSizeOption>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+                <FilterSizeOption value="XS">XS</FilterSizeOption>
+                <FilterSizeOption value="S">S</FilterSizeOption>
+                <FilterSizeOption value="M">M</FilterSizeOption>
+                <FilterSizeOption value="L">L</FilterSizeOption>
+                <FilterSizeOption value="XL">XL</FilterSizeOption>
               </FilterSize>
             </Filter>
           </FilterContainer>
@@ -178,11 +198,17 @@ const Product = () => {
                 onClick={() => setAmount(amount + 1)}
               />
             </AmountContainer>
-            <Button
-              onClick={() => dispatch({ type: types.addCart, payload: amount })}
-            >
-              AÑADIR A LA CESTA
-            </Button>
+            {sizeSelected ? (
+              <Button
+                onClick={() =>
+                  dispatch({ type: types.addCart, payload: { amount, size } })
+                }
+              >
+                AÑADIR A LA CESTA
+              </Button>
+            ) : (
+              <Button disabled>SELECCIONA TALLA</Button>
+            )}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

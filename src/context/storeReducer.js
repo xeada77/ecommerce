@@ -1,5 +1,5 @@
 const initialStore = {
-  cart: { totalItems: 0 },
+  cart: { items: [], totalItems: 0 },
 };
 
 const types = {
@@ -11,7 +11,10 @@ const storeReducer = (state = initialStore, action) => {
     case types.addCart:
       return {
         ...state,
-        cart: { totalItems: state.cart.totalItems + action.payload },
+        cart: {
+          items: [...state.cart.items, action.payload],
+          totalItems: state.cart.totalItems + action.payload.amount,
+        },
       };
     default:
       return state;
