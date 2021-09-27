@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "../components/Slider";
-import Categories from "../components/Categories";
 
 const Home = () => {
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Search from "@material-ui/icons/Search";
 import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
@@ -35,6 +36,12 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
+  padding: 0px 5px;
+
+  ::placeholder {
+    color: teal;
+    font-weight: 600;
+  }
 `;
 
 const Center = styled.div`
@@ -53,10 +60,12 @@ const Right = styled.div`
   justify-content: flex-end;
 `;
 
-const MenuItem = styled.div`
+const MenuItem = styled(Link)`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  text-decoration: none;
+  color: teal;
 `;
 
 const Navbar = () => {
@@ -66,7 +75,7 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input />
+            <Input placeholder="Buscar" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
@@ -74,9 +83,9 @@ const Navbar = () => {
           <Logo>XDA.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>
+          <MenuItem to="/register">REGISTRO</MenuItem>
+          <MenuItem to="/login">ENTRAR</MenuItem>
+          <MenuItem to="/cart">
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />
             </Badge>
