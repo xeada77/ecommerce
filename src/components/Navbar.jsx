@@ -1,9 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Search from "@material-ui/icons/Search";
 import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
 import Badge from "@material-ui/core/Badge";
+import { StoreContext } from "../context/StoreProvider";
 
 const Container = styled.div`
   height: 60px;
@@ -69,6 +70,8 @@ const MenuItem = styled(Link)`
 `;
 
 const Navbar = () => {
+  const [store] = useContext(StoreContext);
+
   return (
     <Container>
       <Wrapper>
@@ -86,7 +89,7 @@ const Navbar = () => {
           <MenuItem to="/register">REGISTRO</MenuItem>
           <MenuItem to="/login">ENTRAR</MenuItem>
           <MenuItem to="/cart">
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={store.cart.totalItems} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>

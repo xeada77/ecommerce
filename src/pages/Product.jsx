@@ -1,9 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import Annoucement from "../components/Annoucement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
+import { StoreContext } from "../context/StoreProvider";
+import { types } from "../context/storeReducer";
 
 const Container = styled.div``;
 
@@ -121,6 +124,9 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const [amount, setAmount] = useState(1);
+  const [store, dispatch] = useContext(StoreContext);
+
   return (
     <Container>
       <Navbar />
@@ -162,11 +168,21 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove style={{ cursor: "pointer" }} />
-              <Amount>10</Amount>
-              <Add style={{ cursor: "pointer" }} />
+              <Remove
+                style={{ cursor: "pointer" }}
+                onClick={() => amount > 0 && setAmount(amount - 1)}
+              />
+              <Amount>{amount}</Amount>
+              <Add
+                style={{ cursor: "pointer" }}
+                onClick={() => setAmount(amount + 1)}
+              />
             </AmountContainer>
-            <Button>AÑADIR A LA CESTA</Button>
+            <Button
+              onClick={() => dispatch({ type: types.addCart, payload: amount })}
+            >
+              AÑADIR A LA CESTA
+            </Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
