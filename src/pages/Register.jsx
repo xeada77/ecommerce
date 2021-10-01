@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Navbar from "../components/Navbar";
 
 const Container = styled.div`
   width: 100vw;
@@ -54,24 +55,27 @@ const Button = styled.button`
 `;
 const Register = () => {
   return (
-    <Container>
-      <Wrapper>
-        <Title>CREA UNA CUENTA</Title>
-        <Form>
-          <Input placeholder="Nombre" />
-          <Input placeholder="Apellidos" />
-          <Input placeholder="Nombre de Usuario" />
-          <Input placeholder="Email" />
-          <Input placeholder="Contraseña" />
-          <Input placeholder="Repetir Contraseña" />
-          <Agreement>
-            Al crear una cuenta, consiento a que mi información personal sea
-            tratada de acuerdo a la <b>POLIZA DE PRIVACIDAD</b>
-          </Agreement>
-          <Button>Enviar</Button>
-        </Form>
-      </Wrapper>
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        <Wrapper>
+          <Title>CREA UNA CUENTA</Title>
+          <Form>
+            <Input placeholder="Nombre" />
+            <Input placeholder="Apellidos" />
+            <Input placeholder="Nombre de Usuario" />
+            <Input placeholder="Email" />
+            <Input placeholder="Contraseña" />
+            <Input placeholder="Repetir Contraseña" />
+            <Agreement>
+              Al crear una cuenta, consiento a que mi información personal sea
+              tratada de acuerdo a la <b>POLIZA DE PRIVACIDAD</b>
+            </Agreement>
+            <Button>Enviar</Button>
+          </Form>
+        </Wrapper>
+      </Container>
+    </>
   );
 };
 

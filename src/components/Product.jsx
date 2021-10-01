@@ -21,9 +21,9 @@ const Info = styled.div`
   justify-content: center;
   flex-direction: column;
   transition: all 0.5s ease;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
+  //cursor: pointer;
+  //text-decoration: none;
+  //color: black;
 `;
 
 const ShopInfo = styled.div`
@@ -31,8 +31,18 @@ const ShopInfo = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  cursor: pointer;
+  //cursor: pointer;
   flex: 4;
+`;
+
+const BackgroundInfo = styled(Link)`
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
 `;
 
 const SizeInfo = styled.div`
@@ -110,7 +120,8 @@ const Product = ({ product }) => {
     <Container>
       <Circle />
       <Image src={product.img} />
-      <Info to="/product">
+      <BackgroundInfo to="/product" />
+      <Info>
         <ShopInfo>
           <Icon to="/cart">
             <ShoppingCartOutlined />
