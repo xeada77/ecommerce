@@ -120,13 +120,13 @@ const Product = ({ product, id }) => {
     <Container key={id}>
       <Circle />
       <Image src={product.img} />
-      <BackgroundInfo to={`/product/${product.id}`} />
+      <BackgroundInfo to={`/product/${product._id}`} />
       <Info>
         <ShopInfo>
           <Icon to="/cart">
             <ShoppingCartOutlined />
           </Icon>
-          <Icon to={`/product/${product.id}`}>
+          <Icon to={`/product/${product._id}`}>
             <SearchOutlined />
           </Icon>
           <Icon to="/">
