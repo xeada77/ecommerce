@@ -115,18 +115,18 @@ const Size = styled.div`
   transition: all 0.5s ease;
 `;
 
-const Product = ({ product }) => {
+const Product = ({ product, id }) => {
   return (
-    <Container>
+    <Container key={id}>
       <Circle />
       <Image src={product.img} />
-      <BackgroundInfo to="/product" />
+      <BackgroundInfo to={`/product/${product.id}`} />
       <Info>
         <ShopInfo>
           <Icon to="/cart">
             <ShoppingCartOutlined />
           </Icon>
-          <Icon to="/product">
+          <Icon to={`/product/${product.id}`}>
             <SearchOutlined />
           </Icon>
           <Icon to="/">
